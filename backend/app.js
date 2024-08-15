@@ -12,6 +12,7 @@ mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASSWOR
         .then(() => console.log('connected to mongoDB succesfully !'))
         .catch(() => console.log('probleme with connection to mongoDB'));        
 
+const bookSchema = require('./models/book');       
 
 const app = express();
 
@@ -27,7 +28,9 @@ app.use((req, res, next) => {
     next();
   });
 
-
+app.post((req, res, next) => {
+    res.bookSchema;
+})
 
 
 module.exports = app;
