@@ -16,10 +16,7 @@ const bookSchema = require('./models/book');
 
 const app = express();
 
-app.use((req, res, next) => {
-    res.status(200).json({connection: 'hello world'}) ;
-    next();
-});
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -28,9 +25,10 @@ app.use((req, res, next) => {
     next();
   });
 
-app.post((req, res, next) => {
-    res.bookSchema;
-})
+  app.use((req, res, next) => {
+    res.status(200).json({connection: 'response is ok!'})  ;
+    next();
+});
 
 
 module.exports = app;
