@@ -1,7 +1,7 @@
 
 
 const express = require('express');
-
+const booksRoutes = require('./routes/books')
 const mongoose = require('mongoose');
 require('dotenv').config();
 console.log(process.env.DB_PASSWORD+' test');
@@ -12,7 +12,6 @@ mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASSWOR
         .then(() => console.log('connected to mongoDB succesfully !'))
         .catch(() => console.log('probleme with connection to mongoDB'));        
 
-const bookSchema = require('./models/book');       
 
 const app = express();
 
@@ -30,5 +29,6 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/api/books/', booksRoutes);
 
 module.exports = app;
