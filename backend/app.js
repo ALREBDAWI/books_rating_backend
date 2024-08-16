@@ -1,9 +1,14 @@
 
 
 const express = require('express');
-const booksRoutes = require('./routes/books')
+
+const booksRoutes = require('./routes/books');
+const userRoutes = require('./routes/user');
+
 const mongoose = require('mongoose');
+
 require('dotenv').config();
+
 console.log(process.env.DB_PASSWORD+' test');
 mongoose.connect('mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@cluster0.ogdde.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
     { useNewUrlParser: true,
@@ -30,5 +35,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/books/', booksRoutes);
+app.use('/api/auth/', userRoutes);
 
 module.exports = app;
