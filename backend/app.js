@@ -30,12 +30,8 @@ app.use((req, res, next) => {
     next();
   });
 
-//   app.use((req, res, next) => {
-//     res.status(200).json({connection: 'response is ok!'})  ;
-//     next();
-// });
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/books', booksRoutes);
 app.use('/api/auth', userRoutes);
-app.use('/images', express.static(path.join(__dirname, 'images')));
 module.exports = app;

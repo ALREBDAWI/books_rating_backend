@@ -3,16 +3,22 @@ const router = express.Router();
 const bookCtrl = require('../controllers/books');       
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
-// const { imgUpload, imgSize } = require('../middleware/multer-config');
+const Sharp = require('../middleware/sharp-config');
 
-router.post('/', auth, multer, bookCtrl.creatBook);
+router.post('/', auth, multer, Sharp, bookCtrl.creatBook);
 
-router.get('/', auth, bookCtrl.getAllBooks);
+router.get('/', bookCtrl.getAllBooks);
 
-router.get('/:id', auth, bookCtrl.getOneBook);
+router.use('/bestrating', bookCtrl.bestRating);
 
-router.put('/:id', auth, multer, bookCtrl.modifyBook);
+router.get('/:id', bookCtrl.getOneBook);
+
+router.put('/:id', auth, multer, Sharp, bookCtrl.modifyBook);
   
 router.delete('/:id', auth, bookCtrl.deleteBook);  
+
+router.post('/:id/rating', auth, bookCtrl.ratingBooks);
+
+
 
 module.exports = router;
