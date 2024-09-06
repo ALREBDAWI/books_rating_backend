@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 const Sharp = require('../middleware/sharp-config');
 
-router.post('/', auth, multer, Sharp, bookCtrl.creatBook);
+router.post('/', auth, multer, Sharp, bookCtrl.createBook);
 
 router.get('/', bookCtrl.getAllBooks);
 

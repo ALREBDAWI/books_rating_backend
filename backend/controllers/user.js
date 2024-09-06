@@ -1,8 +1,7 @@
 const User = require('../models/user');
-
 const bcrypt = require('bcrypt');
-
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //definir le format de l'email
 exports.signup = (req, res, next)=>{
     if(!emailFormat.test(req.body.email)){
@@ -36,7 +35,7 @@ exports.login = (req, res, next)=>{
                     userId: user._id,
                     token: jwt.sign(
                         { userId: user._id },
-                        'RANDOM_TOKEN_SECRET',
+                        process.env.ACCESS_TOKEN_SECRET ,
                         { expiresIn: '24h' }
                     )
                 });
